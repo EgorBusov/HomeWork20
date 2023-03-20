@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/css/normalize.css"/>
+  <link rel="stylesheet" href="/css/AllViewcss.css"/>
+  <link rel="stylesheet" href="/css/PersoneViewcss.css"/>
+  <link rel="stylesheet" href="/css/PersoneAdd.css"/>
+  <title>Phone book</title>
+</head>
+<body>
+    <header class="header">
+       <nav class="nav-links">
+          <img class="img-logo" src="~/img/logo.jpg" alt="logo"/>
+          <ul class="menu-links">
+            <li>
+                <a href="/Persone/Index">Home</a>
+            </li>
+            <li>
+                <a href="/Persone/PersoneAdd">Add</a>
+            </li>
+          </ul>         
+      </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        
+    </footer>
+</body>
+</html>
