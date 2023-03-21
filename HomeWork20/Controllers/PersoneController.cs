@@ -1,4 +1,5 @@
 ﻿using HomeWork20.Context;
+using HomeWork20.Interfaces;
 using HomeWork20.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,10 @@ namespace HomeWork20.Controllers
 
     public class PersoneController : Controller
     {
-        HomeWork20Context context;
-        public PersoneController(HomeWork20Context context)
+        private readonly IPersoneData personeData;
+        public PersoneController(IPersoneData personeData)
         {
-            this.context = context;
+            this.personeData = personeData;
         }
 
         /// <summary>
@@ -19,7 +20,7 @@ namespace HomeWork20.Controllers
         /// <returns></returns>
         public IActionResult Index()
         {
-            ViewBag.Persones = context.Persones;
+            ViewBag.Persones = personeData.GetPersones();
             return View();
         }
         /// <summary>
@@ -30,7 +31,7 @@ namespace HomeWork20.Controllers
         [HttpGet]
         public IActionResult PersoneView(int id)
         {
-            ViewBag.Persone = context.Persones.Where(e => e.Id == id).FirstOrDefault();
+            ViewBag.Persone = personeData.GetOnePersone(id);
             return View();
         }
         /// <summary>
@@ -65,9 +66,7 @@ namespace HomeWork20.Controllers
                 Description = Description
             };
 
-            context.Persones.Add(persone);
-
-            context.SaveChanges();
+            personeData.AddPersone(persone);
             
             return Redirect("/Persone/Index");
         }
@@ -79,7 +78,7 @@ namespace HomeWork20.Controllers
         [HttpGet]
         public IActionResult PersoneEdit(int id)
         {
-            ViewBag.Persone = context.Persones.Where(e => e.Id == id).FirstOrDefault();
+            ViewBag.Persone = personeData.GetPersones();
             return View();
         }
     }

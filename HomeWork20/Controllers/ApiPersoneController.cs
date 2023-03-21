@@ -1,4 +1,6 @@
 ﻿using HomeWork20.Context;
+using HomeWork20.Interfaces;
+using HomeWork20.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +11,10 @@ namespace HomeWork20.Controllers
     [ApiController]
     public class ApiPersoneController : ControllerBase
     {
-        HomeWork20Context context;
-        public ApiPersoneController(HomeWork20Context context)
+        private readonly IPersoneData personeData;
+        public ApiPersoneController(IPersoneData personeData)
         {
-            this.context = context;
+            this.personeData = personeData;
         }
         /// <summary>
         /// Удаление записи
@@ -22,14 +24,12 @@ namespace HomeWork20.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePersone(int id)
         {
-            var persone = context.Persones.Where(e => e.Id == id).FirstOrDefault();            
+            var persone = personeData.GetOnePersone(id);            
             if (persone == null)
             {
                 return NotFound();
             }
-
-            context.Persones.Remove(persone);
-            await context.SaveChangesAsync();
+            personeData.DeletePersone(id);
             
             return Redirect("/Persone/Index");
         }
@@ -50,16 +50,19 @@ namespace HomeWork20.Controllers
         public async Task<IActionResult> EditPersone(int id, string Name, string SurName, string FatherName,
                                     string Telephone, string Address, string Description)
         {
-            
-                var persone = context.Persones.Where(e => e.Id == id).FirstOrDefault();
-                persone.Name = Name;
-                persone.SurName = SurName;
-                persone.FatherName = FatherName;
-                persone.Telephone = Telephone;
-                persone.Address = Address;
-                persone.Description = Description;
-            
-                await context.SaveChangesAsync();
+
+            Persone persone = new Persone()
+            {
+                Id = id,
+                Name = Name,
+                SurName = SurName,
+                FatherName = FatherName,
+                Telephone = Telephone,
+                Address = Address,
+                Description = Description
+            };
+
+            personeData.EditPersone(persone);
             
             return Redirect("/Persone/Index");
         }
