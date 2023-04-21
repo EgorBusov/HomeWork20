@@ -1,11 +1,13 @@
 ﻿using HomeWork20.Context;
 using HomeWork20.Interfaces;
 using HomeWork20.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeWork20.Controllers
 {
-
+    [Authorize]
     public class PersoneController : Controller
     {
         private readonly IPersoneData personeData;
@@ -18,9 +20,10 @@ namespace HomeWork20.Controllers
         /// Вывод всех записей
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index()
+        [AllowAnonymous]
+        public async Task<IActionResult> Index()
         {
-            ViewBag.Persones = personeData.GetPersones();
+            ViewBag.Persones = await personeData.GetPersones();
             return View();
         }
         /// <summary>
@@ -29,16 +32,17 @@ namespace HomeWork20.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult PersoneView(int id)
+        [Authorize(Roles = "Admin, User")]
+        public async Task<IActionResult> PersoneView(int id)
         {
-            ViewBag.Persone = personeData.GetOnePersone(id);
-            return View();
+            return View(await personeData.GetOnePersone(id));
         }
         /// <summary>
         /// Вывод страницы добавления записи
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public IActionResult PersoneAdd()
         {
             return View();
@@ -54,8 +58,10 @@ namespace HomeWork20.Controllers
         /// <param name="Description"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult PersoneAdd(string Name, string SurName, string FatherName, string Telephone, string Address, string Description)
-        {
+        [Authorize(Roles = "Admin, User")]
+        public async Task<IActionResult> PersoneAdd(string Name, string SurName, string FatherName, string Telephone, 
+            string Address, string Description)
+        {           
             Persone persone = new Persone()
             {
                 Name = Name,
@@ -64,10 +70,9 @@ namespace HomeWork20.Controllers
                 Telephone = Telephone,
                 Address = Address,
                 Description = Description
-            };
+            };            
 
-            personeData.AddPersone(persone);
-            
+            await personeData.AddPersone(persone);
             return Redirect("/Persone/Index");
         }
         /// <summary>
@@ -76,10 +81,10 @@ namespace HomeWork20.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult PersoneEdit(int id)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> PersoneEdit(int id)
         {
-            ViewBag.Persone = personeData.GetPersones();
-            return View();
+            return View( await personeData.GetOnePersone(id));
         }
     }
 }

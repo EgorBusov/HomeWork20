@@ -30,36 +30,19 @@ html {
 }
 
 .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #7B68EE;
     height: 70px;
     margin-bottom: 30px;
-    padding-bottom: 10px;
+    padding-right: 20px;
 }
 
-.nav-links img {
-    display: inline-block;
-    width: 70px;
-    height: 70px;
-    margin-right: 20px;
-}
-
-.nav-links{
-    display: inline-block;
-}
-/*.nav-links a{
-    display: inline-block;
-    margin-right: 20px;
-}*/
-
-.menu-links {
-    display: inline-block;
-    padding: 0 0 0 0;
-    align-items: start;
-}
-
-.menu-links li{
-    display: inline-block;
-    margin-right: 20px;
+.logo {
+    height: 80px;
+    width: 80px;
+    margin-left: 0px;
 }
 
 .table {
@@ -87,3 +70,42 @@ html {
     border-radius:5px;
     padding: 10px;
 }
+
+.nav-links ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 10px;
+}
+
+.nav-links a {
+    display: inline-block;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+    .nav-links a:hover {
+        background-color: #6d5cde;
+    }
+
+form {
+    display: inline-block;
+}
+
+    form input[type="submit"] {
+        background-color: #fff;
+        color: #7B68EE;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        form input[type="submit"]:hover {
+            background-color: #ebebeb;
+        }

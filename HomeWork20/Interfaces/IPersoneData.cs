@@ -2,12 +2,39 @@
 
 namespace HomeWork20.Interfaces
 {
+
     public interface IPersoneData
     {
-        IEnumerable<Persone> GetPersones();
-        Persone GetOnePersone(int id);
-        void AddPersone(Persone persone);
-        void DeletePersone(int personeId);
-        void EditPersone(Persone persone);
+        /// <summary>
+        /// получение всех записей
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<Persone>> GetPersones();
+        /// <summary>
+        /// Получение полной инф о записи
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<Persone> GetOnePersone(int id);
+        /// <summary>
+        /// Добавление записи
+        /// </summary>
+        /// <param name="persone"></param>
+        Task AddPersone(Persone persone);
+        /// <summary>
+        /// удаление записи
+        /// </summary>
+        /// <param name="personeId"></param>
+        Task DeletePersone(int personeId);
+        /// <summary>
+        /// редактирование записи
+        /// </summary>
+        /// <param name="persone"></param>
+        Task EditPersone(Persone persone);
+        /// <summary>
+        /// сохранение бд
+        /// </summary>
+        /// <returns></returns>
+        Task SaveChangesAsync();
     }
 }

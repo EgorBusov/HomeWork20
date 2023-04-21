@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model HomeWork20.Models.Persone
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,28 +8,31 @@
 <body>
     <form class="persone-form" action="/Persone/PersoneAdd" method="post">
         <p>
-            <label>Surname</label>
-        <input type="text" name="SurName"/>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        </p>
+        <p>
+            <label>Surname</label>    
+            <input asp-for="SurName" required/>
         </p>
         <p>
             <label>Name</label>
-        <input type="text" name="Name"/>
+        <input asp-for="Name" required/>
         </p>
         <p>
             <label>FatherName</label>
-        <input type="text" name="FatherName"/>
+        <input asp-for="FatherName" required/>
         </p>
         <p>
             <label>Phone</label>
-        <input type="text" name="Telephone"/>
+        <input asp-for="Telephone" required/>
         </p>
         <p>
             <label>Address</label>
-        <input type="text" name="Address"/>
+        <input asp-for="Address" required/>
         </p>
         <p>
             <label>Description</label>
-        <input type="text" name="Description"/>
+        <input asp-for="Description" required/>
         </p>
 
         <button type="submit">Save</button>

@@ -1,10 +1,14 @@
 ﻿using HomeWork20.Context;
 using HomeWork20.Interfaces;
 using HomeWork20.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace HomeWork20.Data
 {
+    /// <summary>
+    /// Работа с данными
+    /// </summary>
     public class PersoneData : IPersoneData
     {
         private readonly HomeWork20Context context;
@@ -13,25 +17,25 @@ namespace HomeWork20.Data
         {
             this.context = context;
         }
-
-        public void AddPersone(Persone persone)
+       
+        public async Task AddPersone(Persone persone)
         {
             context.Persones.Add(persone);
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
-
-        public void DeletePersone(int personeId)
+        
+        public async Task DeletePersone(int personeId)
         {
-            var persone = context.Persones.Where(e => e.Id == personeId).FirstOrDefault();
+            var persone = await context.Persones.FirstOrDefaultAsync(e => e.Id == personeId);
 
             context.Persones.Remove(persone);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
-
-        public void EditPersone(Persone persone)
+        
+        public async Task EditPersone(Persone persone)
         {
-            var personeEdit = context.Persones.Where(e => e.Id == persone.Id).FirstOrDefault();
+            var personeEdit = await context.Persones.FirstOrDefaultAsync(e => e.Id == persone.Id);
             personeEdit.Name = persone.Name;
             personeEdit.SurName = persone.SurName;
             personeEdit.FatherName = persone.FatherName;
@@ -39,17 +43,22 @@ namespace HomeWork20.Data
             personeEdit.Address = persone.Address;
             personeEdit.Description = persone.Description;
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public Persone GetOnePersone(int id)
+        public async Task<Persone> GetOnePersone(int id)
         {
-            return this.context.Persones.Where(e => e.Id == id).FirstOrDefault();
+            return await context.Persones.FirstOrDefaultAsync(e => e.Id == id);
+        }
+        
+        public async Task<IEnumerable<Persone>> GetPersones()
+        {
+            return await context.Persones.ToListAsync();
         }
 
-        public IEnumerable<Persone> GetPersones()
+        public async Task SaveChangesAsync()
         {
-            return this.context.Persones;
+            await context.SaveChangesAsync();
         }
     }
 }

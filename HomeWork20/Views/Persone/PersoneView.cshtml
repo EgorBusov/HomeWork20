@@ -1,44 +1,45 @@
-﻿<!DOCTYPE html>
+﻿@model HomeWork20.Models.Persone
+<!DOCTYPE html>
 <html lang="en">
 
 <body>
   <div class="inf">
       <p>
           <span class="fio">Surname</span>
-          <span class="span-inf">@ViewBag.Persone.SurName</span>
+          <span class="span-inf">@Model.SurName</span>
       </p>
 
       <p>
           <span class="fio">Name</span>
-          <span class="span-inf">@ViewBag.Persone.Name</span>
+          <span class="span-inf">@Model.Name</span>
       </p>
 
       <p>
           <span class="fio">Fathername</span>
-          <span class="span-inf">@ViewBag.Persone.FatherName</span>
+          <span class="span-inf">@Model.FatherName</span>
       </p>
 
       <p>
           <span class="fio">Telephone</span>
-          <span class="span-inf">@ViewBag.Persone.Telephone</span>
+          <span class="span-inf">@Model.Telephone</span>
       </p>
 
       <p>
           <span class="fio">Address</span>
-          <span class="span-inf">@ViewBag.Persone.Address</span>
+          <span class="span-inf">@Model.Address</span>
       </p>
 
       <p>
           <span class="fio">Description</span>
-          <span class="span-inf">@ViewBag.Persone.Description</span>
+          <span class="span-inf">@Model.Description</span>
       </p>
   </div>
   <div class ="edit-delete-links">
-      <a class="edit-link" href="/Persone/PersoneEdit/@ViewBag.Persone.Id">
+      <a class="edit-link" href="/Persone/PersoneEdit/@Model.Id">
           <img src="/img/editImg.jpg" alt="Edit icon">
       </a>
 
-      <a class="delete-link" asp-for="id" href="/api/ApiPersone/DeletePersone/@ViewBag.Persone.Id" data-method="delete">
+      <a class="delete-link" asp-for="id" href="/api/ApiPersone/DeletePersone/@Model.Id" data-method="delete">
         <img src="/img/deleteImg.jpg" alt="Delete icon">
       </a>
   </div>

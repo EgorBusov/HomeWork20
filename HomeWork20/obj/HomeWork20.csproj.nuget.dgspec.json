@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sgyxa\\OneDrive\\Рабочий стол\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\HomeWork20.csproj": {}
+    "C:\\Users\\1\\Desktop\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\HomeWork20.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sgyxa\\OneDrive\\Рабочий стол\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\HomeWork20.csproj": {
+    "C:\\Users\\1\\Desktop\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\HomeWork20.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sgyxa\\OneDrive\\Рабочий стол\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\HomeWork20.csproj",
+        "projectUniqueName": "C:\\Users\\1\\Desktop\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\HomeWork20.csproj",
         "projectName": "HomeWork20",
-        "projectPath": "C:\\Users\\sgyxa\\OneDrive\\Рабочий стол\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\HomeWork20.csproj",
-        "packagesPath": "C:\\Users\\sgyxa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sgyxa\\OneDrive\\Рабочий стол\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\obj\\",
+        "projectPath": "C:\\Users\\1\\Desktop\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\HomeWork20.csproj",
+        "packagesPath": "C:\\Users\\1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\1\\Desktop\\C#\\C# osnova\\Домашки\\HomeWork20Orig\\HomeWork20\\HomeWork20\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sgyxa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,6 +44,18 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.ViewFeatures": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.3, )"
@@ -74,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

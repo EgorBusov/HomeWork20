@@ -1,7 +1,9 @@
 ﻿using HomeWork20.Context;
 using HomeWork20.Interfaces;
 using HomeWork20.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,14 +24,15 @@ namespace HomeWork20.Controllers
         /// <returns></returns>
         [Route("DeletePersone/{id}")]
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeletePersone(int id)
         {
-            var persone = personeData.GetOnePersone(id);            
+            var persone = await personeData.GetOnePersone(id);            
             if (persone == null)
             {
                 return NotFound();
             }
-            personeData.DeletePersone(id);
+            await personeData.DeletePersone(id);
             
             return Redirect("/Persone/Index");
         }
@@ -47,6 +50,7 @@ namespace HomeWork20.Controllers
         /// <returns></returns>
         [Route("EditPersone/{id}")]
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditPersone(int id, string Name, string SurName, string FatherName,
                                     string Telephone, string Address, string Description)
         {
@@ -62,7 +66,7 @@ namespace HomeWork20.Controllers
                 Description = Description
             };
 
-            personeData.EditPersone(persone);
+            await personeData.EditPersone(persone);
             
             return Redirect("/Persone/Index");
         }
